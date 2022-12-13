@@ -15,6 +15,7 @@ Several solutions can be set up:
 - Scrapping the whole blockchain into an indexed database and listen for new blocks to modify this database (like etherscan)
 - Deploy a Subgraphs listening to ERC20 contracts: https://github.com/georgeroman/erc20-subgraph
 &#8594; I was attracted to go with this efficient solution but I didn't have enough time to set it up.
+- Etherplex is a library that consolidates the list of the ethers.js contract function calls into one JSON-RPC call on the multicall smart contract aggregate function, which iterates and executes the list of contract function calls. https://github.com/makerdao/multicall
 
 ### Chosen solution
 My solution was to use batch with web3js.
@@ -58,5 +59,5 @@ https://github.com/Foulks-Plb/ERC20-wallet-viewer/blob/main/src/utils/utils.ts
 ## Post Mortem
 I did not find a use case for the EIP-3770 in this application.
 Conversion from symbol to id is not clean and does not allow application to evolve with new ERC20 contracts.
-Query time is good but not very fast.
+Query time is coorect but not very fast.
 
