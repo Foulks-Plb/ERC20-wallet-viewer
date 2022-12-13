@@ -1,83 +1,41 @@
-<<<<<<< HEAD
+
 # ERC20-wallet-viewer
- List of all ERC-20 tokens and their balances with their equivalent in USD of a given address on different EVM blockchain
-<<<<<<< HEAD
-=======
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Problem
+Data on blockchain is very difficult to access.
+How to get a list of all ERC-20 tokens and their balances with their equivalent in USD of a given address on different EVM blockchain ?
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Solution
+Several solutions can be set up:
+- Scrapping the whole blockchain into an indexed database and listen for new blocks to modify this database (like etherscan)
+- Deploy a Subgraphs listening to ERC20 contracts: https://github.com/georgeroman/erc20-subgraph
+&#8594; I was attracted to go with this efficient solution but I didn't have enough time to set it up.
 
-## Description
+### Chosen solution
+My solution was to use batch with web3js:
+Web3.js batch allows for the queuing up of multiple requests and processing them all at once. They are mainly used to ensure serial processing of requests, and sometimes can be faster as requests are processed asynchronously.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### How does it work ?
+1. Get all ERC20 contract address with this api https://gateway.ipfs.io/ipns/tokens.uniswap.org 
+2. Create a queue balanceOf call request
+3. Execute the batch
+4. Sort data
+5. Get the price of present tokens on coingecko with this api https://api.coingecko.com/api/v3/simple/price?ids=...&vs_currencies=usd
+6. return balances
 
-## Installation
+### Technology used
+- Typescript
+- Node
+- NestJs
+- Web3.js
 
-```bash
-$ npm install
-```
+## More in detail
+### How to run it ?
+1. `git clone https://github.com/Foulks-Plb/ERC20-wallet-viewer.git` 
+2. `cd ERC20-wallet-viewer`
+3. `npm install`
+4. `npm run start`
+5. Go to `http://localhost:8080/balances/{network}/{address}`
 
-## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
->>>>>>> origin/develop
-=======
- 
- Readme is being written...
->>>>>>> d41ac1f581834773a6c07c0628901d13e8ab5a5b
+...
