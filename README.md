@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 # ERC20-wallet-viewer
  List of all ERC-20 tokens and their balances with their equivalent in USD of a given address on different EVM blockchain
+<<<<<<< HEAD
 =======
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
@@ -76,3 +77,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 >>>>>>> origin/develop
+=======
+ 
+ Readme is being written...
+>>>>>>> d41ac1f581834773a6c07c0628901d13e8ab5a5b
