@@ -1,6 +1,11 @@
 
 # ERC20-wallet-viewer
 
+## Key value
+- Realized: 1,5 day
+- Query time: 3s&#12316;4s
+
+
 ## Problem
 Data on blockchain is very difficult to access.
 How to get a list of all ERC-20 tokens and their balances with their equivalent in USD of a given address on different EVM blockchain ?
@@ -12,7 +17,7 @@ Several solutions can be set up:
 &#8594; I was attracted to go with this efficient solution but I didn't have enough time to set it up.
 
 ### Chosen solution
-My solution was to use batch with web3js:
+My solution was to use batch with web3js.
 Web3.js batch allows for the queuing up of multiple requests and processing them all at once. They are mainly used to ensure serial processing of requests, and sometimes can be faster as requests are processed asynchronously.
 
 ### How does it work ?
@@ -37,5 +42,21 @@ Web3.js batch allows for the queuing up of multiple requests and processing them
 4. `npm run start`
 5. Go to `http://localhost:8080/balances/{network}/{address}`
 
+### Technical aspect
+#### Pipe
+If you enter a wrong address and an unsupported network, recorded errors will appear thanks `pipes`:
+https://github.com/Foulks-Plb/ERC20-wallet-viewer/tree/main/src/common/pipes
 
-...
+#### Date type
+All aplication is typed and I created a single custom interface for the returned data:
+https://github.com/Foulks-Plb/ERC20-wallet-viewer/tree/main/src/common/interfaces
+
+#### Utils
+Several reusable functions are available in this file: 
+https://github.com/Foulks-Plb/ERC20-wallet-viewer/blob/main/src/utils/utils.ts
+
+## Post Mortem
+I did not find a use case for the EIP-3770 in this application.
+Conversion from symbol to id is not clean and does not allow application to evolve with new ERC20 contracts.
+Query time is good but not very fast.
+
