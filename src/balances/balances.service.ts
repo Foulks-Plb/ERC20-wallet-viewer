@@ -11,7 +11,7 @@ export class BalancesService {
         const batch = await generateContractFunctionList(network, wallet, tokens)
 
         const tokenBalances: Balance[] = []
-        const Ids: any[] = []
+        const Ids: string[] = []
         let batchData: any
 
         try {
@@ -31,7 +31,6 @@ export class BalancesService {
             })
 
             const allPrice = await getPriceAllTokens(Ids)
-            console.log(allPrice)
 
             batchData.response.forEach((res: any, index: number) => {
                 if (res?._hex) {
