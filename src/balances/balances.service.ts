@@ -6,7 +6,7 @@ const Web3 = require("web3");
 
 @Injectable()
 export class BalancesService {
-    async getBalancesByWallet(network: number, wallet: string) {
+    async getBalancesByWallet(network: number, wallet: string): Promise<Balance[]> {
         const { tokens } = await fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org').then(data => data.json())
         const batch = await generateContractFunctionList(network, wallet, tokens)
 

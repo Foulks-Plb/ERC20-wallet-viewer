@@ -9,7 +9,7 @@ export class BalancesController {
     constructor(private readonly balancesService: BalancesService) {}
 
   @Get('/:network/:wallet')
-  getHello(@Param('network', new transformNetwork()) network: number, @Param('wallet', new isValidAddress()) wallet: string){
+  getHello(@Param('network', new transformNetwork()) network: number, @Param('wallet', new isValidAddress()) wallet: string): Promise<Balance[]> {
     return this.balancesService.getBalancesByWallet(network, wallet);
   }
 }
