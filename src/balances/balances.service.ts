@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { generateContractFunctionList, getPriceAllTokens } from 'src/utils/utils';
+import { generateContractFunctionList, getPriceAllTokens, getTokenList } from 'src/utils/utils';
 import symbolToId from '../utils/symbolToId.json';
 import { Balance } from '../common/interfaces/balance.interface';
-const Web3 = require("web3");
 
 @Injectable()
 export class BalancesService {
     async getBalancesByWallet(network: number, wallet: string): Promise<Balance[]> {
-        const { tokens } = await fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org').then(data => data.json())
+        const { tokens } = await getTokenList(network)
         const batch = await generateContractFunctionList(network, wallet, tokens)
 
         const tokenBalances: Balance[] = []

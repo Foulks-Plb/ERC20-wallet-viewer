@@ -1,5 +1,5 @@
 import { BadRequestException } from "@nestjs/common";
-
+import arbitrumTokenList from '../utils/arbitrumTokenList.json';
 const Web3 = require("web3");
 
 const abi = [
@@ -57,6 +57,21 @@ function getRpc(_id: number): string {
   else {
     throw new BadRequestException('network RPC error');
   }
+}
+
+export async function getTokenList(_id: number){
+  if (_id == 1) {
+    return await fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org').then(data => data.json())
+  }
+  else if (_id == 137) {
+    return await fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org').then(data => data.json())
+  }
+  else if (_id == 42161) {
+    return arbitrumTokenList
+  }
+  else {
+    throw new BadRequestException('Token list error');
+  } 
 }
 
 export async function getPriceAllTokens(_id :string[]){
