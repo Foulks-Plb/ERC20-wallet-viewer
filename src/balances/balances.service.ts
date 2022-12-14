@@ -37,7 +37,7 @@ export class BalancesService {
                     const _balance = res.toString()
                     if (_balance != "0") {
                         const { name, decimals, symbol, address } = tokens[index]
-                        const price = allPrice[symbolToId[symbol.toLowerCase()]].usd 
+                        const price = allPrice[symbolToId[symbol.toLowerCase()]].usd
                         tokenBalances.push(
                             {
                                 address: address,

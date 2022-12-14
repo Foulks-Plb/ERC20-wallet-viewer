@@ -1,18 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BalancesController } from './balances.controller';
+import { BalancesService } from './balances.service';
 
 describe('BalancesController', () => {
-  let controller: BalancesController;
+  let Bcontroller: BalancesController;
+  let Bservice: BalancesService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [BalancesController],
-    }).compile();
-
-    controller = module.get<BalancesController>(BalancesController);
+      Bservice = new BalancesService();
+      Bcontroller = new BalancesController(Bservice); 
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(Bcontroller).toBeDefined();
+  });
+
+  it('should return an array of cats', async () => {
+    // const result = ['test'];
+    // jest.spyOn(Bservice, 'getBalancesByWallet').mockImplementation(() => result);
+
+    // expect(await Bcontroller.getBalance(1, "0xb21090c8f6bac1ba614a3f529aae728ea92b6487")).toBe(result);
   });
 });
