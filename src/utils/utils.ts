@@ -28,7 +28,10 @@ export const generateContractFunctionList = async (_networkId: number, _wallet: 
   const web3 = new Web3(new Web3.providers.HttpProvider(getRpc(_networkId)))
   const batch = new web3.BatchRequest()
 
-  const ERC20OnNetWork = tokens.filter((tk: any) => tk.chainId == _networkId)
+  const ERC20OnNetWork:any[] = tokens.filter((tk: any) => tk.chainId == _networkId)
+  if(ERC20OnNetWork?.length == 0){
+    throw new BadRequestException('Token list empty');
+  }
 
   ERC20OnNetWork.map(async ({ address: tokenAddress}: { address: string}) => {
     if (tokenAddress != null && tokenAddress != '') {
