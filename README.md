@@ -61,8 +61,3 @@ With this API https://gateway.ipfs.io/ipns/tokens.uniswap.org , Arbitrum token a
 So I created a static list of arbitrum token addresses. 
 https://github.com/Foulks-Plb/ERC20-wallet-viewer/blob/main/src/utils/arbitrumTokenList.json
 
-## Post Mortem
-I did not find a use case for the EIP-3770 in this application.
-Conversion from symbol to id is not clean and does not allow application to evolve with new ERC20 contracts.
-Query time is coorect but not very fast.
-
