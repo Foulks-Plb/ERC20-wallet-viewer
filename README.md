@@ -14,7 +14,6 @@ How to get a list of all ERC-20 tokens and their balances with their equivalent 
 Several solutions can be set up:
 - Scrapping the whole blockchain into an indexed database and listen for new blocks to modify this database (like etherscan)
 - Deploy a Subgraphs listening to ERC20 contracts: https://github.com/georgeroman/erc20-subgraph
-&#8594; I was attracted to go with this efficient solution but I didn't have enough time to set it up.
 - Etherplex is a library that consolidates the list of the ethers.js contract function calls into one JSON-RPC call on the multicall smart contract aggregate function, which iterates and executes the list of contract function calls. https://github.com/makerdao/multicall
 
 ### Chosen solution
